@@ -74,4 +74,14 @@ Public Class WebCatalagoVideos
         DataList1.DataBind()
 
     End Sub
+
+    Protected Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+
+        Dim ds As DataSet
+        Dim newTitulo As String
+        newTitulo = TextBox1.Text
+        ds = VideosCN.Instancia.FiltrarXTitulo(newTitulo)
+        DataList1.DataSource = VideosCN.Instancia.FiltrarXTitulo(newTitulo)
+        DataList1.DataBind()
+    End Sub
 End Class

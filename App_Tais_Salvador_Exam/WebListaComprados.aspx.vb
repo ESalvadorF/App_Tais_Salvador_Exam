@@ -75,6 +75,19 @@ Public Class WebListaComprados
     End Sub
 
     Protected Sub ImageButton1_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs)
-    End Sub
+    End Sub
 
+    Protected Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim oVideo As New VideosCN
+        Dim numDocumento As Integer
+        Dim ok As Boolean
+        numDocumento = oVideo.CrearDocumento()
+        Dim obj As VideosDS = CType(Session("Canasta"), VideosDS)
+        For Each objDR In obj.Videos.Rows
+            ok = oVideo.Insertar(numDocumento, objDR("CodVideo"), objDR("Cantidad"), objDR("subtotal"))
+        Next
+        MsgBox("Compra Registrada")
+        Session("Canasta") = Nothing
+        Response.Redirect("WebCatalagoVideos.aspx")
+    End Sub
 End Class

@@ -16,4 +16,13 @@ Public Class VideosCN
     Public Function FiltrarxCategoria(ByVal codCategoria As String) As DataSet
         Return VideosDA.Instancia.filtrarxCategoria(codCategoria)
     End Function
+    Public Function FiltrarXTitulo(ByVal titulo As String) As DataSet
+        Return VideosDA.Instancia.filtrarXTitulo(titulo)
+    End Function
+    Public Function CrearDocumento() As Integer
+        Return VideosDA.Instancia.CrearDocumento()
+    End Function
+    Public Function Insertar(ByVal iddocumento As String, ByVal codVideo As String, cantidad As String, precio As String) As Boolean
+        Return VideosDA.Instancia.Agregar(iddocumento, codVideo, cantidad, precio)
+    End Function
 End Class

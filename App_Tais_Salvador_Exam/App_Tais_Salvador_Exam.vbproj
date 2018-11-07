@@ -153,6 +153,7 @@
     <Content Include="imagen\Titanic_poster.jpg" />
     <Content Include="WebCatalagoVideos.aspx" />
     <Content Include="WebListaComprados.aspx" />
+    <None Include="My Project\PublishProfiles\AplicacionCarroCompras - Web Deploy.pubxml" />
     <None Include="My Project\PublishProfiles\AppCarrito - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

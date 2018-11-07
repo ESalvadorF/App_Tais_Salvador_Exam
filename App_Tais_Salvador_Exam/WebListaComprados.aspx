@@ -59,6 +59,7 @@ ForeColor="White"
  <td align="center" class="style2">
  <asp:Button ID="Button1" runat="server" Text="Actualizar Datos" style="height: 26px" />
  <asp:Button ID="Button2" runat="server" Text="Continuar Comprando" />
+     <asp:Button ID="Button3" runat="server" Text="Comprar" />
  </td>
  </tr>
  </table>

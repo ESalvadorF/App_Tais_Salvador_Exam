@@ -8,6 +8,6 @@
         End Get
     End Property
     Public Function cadenaconexion() As String
-        Return "Data Source=bdtais.database.windows.net;Initial Catalog=bd_isoo;User ID=administrador;Password=159753Az;"
+        Return "Data Source=.;Initial Catalog=BD_Salvador_Tais;Integrated Security=True;"
     End Function
 End Class
