@@ -1,7 +1,8 @@
 ﻿Imports CapaNegocio
 Imports CapaEntidad
 Imports CapaDatos
-
+Imports System.Net.Mail
+Imports System.Net
 
 Public Class WebListaComprados
     Inherits System.Web.UI.Page
@@ -83,11 +84,52 @@ Public Class WebListaComprados
         Dim ok As Boolean
         numDocumento = oVideo.CrearDocumento()
         Dim obj As VideosDS = CType(Session("Canasta"), VideosDS)
-        For Each objDR In obj.Videos.Rows
-            ok = oVideo.Insertar(numDocumento, objDR("CodVideo"), objDR("Cantidad"), objDR("subtotal"))
-        Next
-        MsgBox("Compra Registrada")
-        Session("Canasta") = Nothing
-        Response.Redirect("WebCatalagoVideos.aspx")
+        If obj IsNot Nothing Then
+            If TextBox2.Text <> "" Then
+
+                For Each objDR In obj.Videos.Rows
+                    ok = oVideo.Insertar(numDocumento, objDR("CodVideo"), objDR("Cantidad"), objDR("subtotal"))
+                Next
+                MsgBox("Compra Registrada")
+
+                Dim correo As New System.Net.Mail.MailMessage
+                Dim smtp As New System.Net.Mail.SmtpClient
+                Try
+                    correo.To.Clear()
+                    correo.Body = ""
+                    correo.Subject = ""
+
+                    correo.Body = "Nombre: " + TextBox3.Text +
+                        " Correo: " + TextBox2.Text +
+                        " Usted realizo una compra de varias peliculas por un monto de: " + "S/." + Lblsubtotal.Text
+
+                    correo.Subject = "Verificacion de Compra"
+                    correo.IsBodyHtml = True
+                    correo.To.Add(Trim(TextBox2.Text))
+
+                    correo.From = New MailAddress("tais2.visual123@gmail.com")
+                    smtp.Credentials = New NetworkCredential("tais2.visual123@gmail.com", "adminVB123")
+
+                    smtp.Host = "smtp.gmail.com"
+                    smtp.Port = 587
+                    smtp.EnableSsl = True
+
+                    smtp.Send(correo)
+                    MsgBox("El mensaje fue enviado correctamente. ", MsgBoxStyle.Information, "Mensaje")
+
+                Catch ex As Exception
+                    MsgBox(ex.Message, "Mensaje Visual Basic" & ex.Message)
+                End Try
+
+                Session("Canasta") = Nothing
+
+                Response.Redirect("WebCatalagoVideos.aspx")
+            Else
+                MsgBox("Correo no ingresado")
+            End If
+
+        Else
+                MsgBox("No hay peliculas en el carrito de compras")
+        End If
     End Sub
 End Class

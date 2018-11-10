@@ -6,19 +6,21 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+        <link href="../assets/css/all.css" rel="stylesheet" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
         <asp:Button ID="Button2" runat="server" Text="Ir al Carrito" />
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:App_Tais_Salvador_Exam.My.MySettings.BD_Salvador_TaisConnectionString %>" SelectCommand="SELECT * FROM [Categoria]"></asp:SqlDataSource>
-        <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="DesCategoria" DataValueField="CodCategoria">
-        </asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:App_Tais_Salvador_Exam.My.MySettings.BD_Salvador_TaisConnectionString %>" SelectCommand="SELECT [CodCategoria], [DesCategoria] FROM [Categoria]"></asp:SqlDataSource>
         <asp:Label ID="Label1" runat="server" Text="Seleccionar Categoria :  "></asp:Label>
         <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="DesCategoria" AutoPostBack="true"  DataValueField="CodCategoria">
         </asp:DropDownList>
+        <br />
+        <asp:Label ID="Label2" runat="server" Text="Buscador por nombre de pelicula:  "></asp:Label>
+        
         <asp:TextBox ID="TextBox1" AutoPostBack="true" runat="server"></asp:TextBox>
-    <asp:DataList ID="DataList1" runat="server" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black" GridLines="Both" RepeatColumns="3" Width="784px" HorizontalAlign="Center">
+    <asp:DataList ID="DataList1" runat="server" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black" GridLines="Both" RepeatColumns="2" Width="865px" HorizontalAlign="Center" Height="463px">
         <FooterStyle BackColor="#CCCCCC" />
         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
         <ItemStyle BackColor="White" />
@@ -26,7 +28,7 @@
             <table class="table">
                 <tr>
                     <td>
-                        <asp:Image ID="Image1" runat="server" Height="65px" ImageUrl='<%# "~/imagen/" + Eval("foto") %>' Width="99px" />
+                        <asp:Image ID="Image1" runat="server" Height="193px" ImageUrl='<%# "~/imagen/" + Eval("foto") %>' Width="206px" />
                     </td>
                 </tr>
                 <tr>
@@ -61,5 +63,9 @@
         <SelectedItemStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
         </asp:DataList>
     </form>
+
+        <script src="../assets/js/jquery-3.3.1.min.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
 </body>
 </html>

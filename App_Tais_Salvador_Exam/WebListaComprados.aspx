@@ -6,9 +6,16 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+            <link href="../assets/css/all.css" rel="stylesheet" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:Label ID="Label4" runat="server" Text="Nombre :"></asp:Label><asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+        <br />
+        <asp:Label ID="Label3" runat="server" Text="Ingresar Correo Electronico :"></asp:Label>
+        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+
         <table class="style1">
  <tr>
  <td bgcolor="#006699">
@@ -64,5 +71,9 @@ ForeColor="White"
  </tr>
  </table>
     </form>
+
+        <script src="../assets/js/jquery-3.3.1.min.js"></script>
+    <script src="../assets/js/popper.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
 </body>
 </html>
