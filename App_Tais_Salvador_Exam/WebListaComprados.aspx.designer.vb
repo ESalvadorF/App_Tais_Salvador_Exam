@@ -120,4 +120,31 @@ Partial Public Class WebListaComprados
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
     Protected WithEvents Button3 As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''Control Label5.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Label5 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Control GridView1.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''Control Label6.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
 End Class

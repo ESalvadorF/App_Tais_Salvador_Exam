@@ -8,6 +8,11 @@
     <title></title>
             <link href="../assets/css/all.css" rel="stylesheet" />
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .auto-style1 {
+            margin-right: 0px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -27,7 +32,7 @@ ForeColor="White"
  <tr>
  <td class="style2">
 
- <asp:GridView ID="GvwCarrito" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="444px">
+ <asp:GridView ID="GvwCarrito" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="3" Width="444px" CssClass="auto-style1">
  <RowStyle ForeColor="#000066" />
  <Columns>
  <asp:TemplateField HeaderText="Quitar">
@@ -35,6 +40,11 @@ ForeColor="White"
  <asp:ImageButton ID="ImageButton1" runat="server" CommandArgument='<%# Eval("CodVideo") %>' CommandName='Borrar' ImageUrl="imagen/eliminar.PNG" HeaderText="Quitar" onclick="ImageButton1_Click"/>
  </ItemTemplate>
  </asp:TemplateField>
+     <asp:TemplateField HeaderText="Imagen">
+         <ItemTemplate>
+             <asp:Image ID="Image1" runat="server" Height="130px" ImageUrl='<%# "~/imagen/" + Eval("Foto") %>' Width="165px" />
+         </ItemTemplate>
+     </asp:TemplateField>
  <asp:BoundField DataField="CodVideo" HeaderText="Codigo" />
  <asp:BoundField DataField="Titulo" HeaderText="Video" />
      <asp:BoundField DataField="Categoria" HeaderText="Categoria" />
@@ -70,10 +80,25 @@ ForeColor="White"
  </td>
  </tr>
  </table>
-    </form>
+
+        <asp:Label ID="Label5" runat="server"></asp:Label>
+
+
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+            <Columns>
+                <asp:BoundField HeaderText="Codigo del Video" />
+                <asp:BoundField HeaderText="Cantidad" />
+                <asp:BoundField HeaderText="Subtotal" />
+            </Columns>
+        </asp:GridView>
 
         <script src="../assets/js/jquery-3.3.1.min.js"></script>
     <script src="../assets/js/popper.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
-</body>
+        <asp:Label ID="Label6" runat="server"></asp:Label>
+
+
+    </form>
+
+        </body>
 </html>

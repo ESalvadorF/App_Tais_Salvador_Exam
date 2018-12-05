@@ -8,6 +8,6 @@
         End Get
     End Property
     Public Function cadenaconexion() As String
-        Return "Data Source=.;Initial Catalog=BD_Salvador_Tais;Integrated Security=True;"
+        Return "Data Source=DESKTOP-KQTELTS\SQLEXPRESS;Initial Catalog=BD_Salvador_Tais;Integrated Security=True;"
     End Function
 End Class

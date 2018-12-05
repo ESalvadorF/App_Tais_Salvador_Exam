@@ -295,6 +295,8 @@ Partial Public Class VideosDS
         
         Private columnprecio As Global.System.Data.DataColumn
         
+        Private columnFoto As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -379,6 +381,14 @@ Partial Public Class VideosDS
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property FotoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFoto
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -415,9 +425,9 @@ Partial Public Class VideosDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddVideosRow(ByVal Titulo As String, ByVal Categoria As String, ByVal Cantidad As Integer, ByVal subTotal As Decimal, ByVal precio As Decimal) As VideosRow
+        Public Overloads Function AddVideosRow(ByVal Titulo As String, ByVal Categoria As String, ByVal Cantidad As Integer, ByVal subTotal As Decimal, ByVal precio As Decimal, ByVal Foto As String) As VideosRow
             Dim rowVideosRow As VideosRow = CType(Me.NewRow,VideosRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Titulo, Categoria, Cantidad, subTotal, precio}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Titulo, Categoria, Cantidad, subTotal, precio, Foto}
             rowVideosRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowVideosRow)
             Return rowVideosRow
@@ -452,6 +462,7 @@ Partial Public Class VideosDS
             Me.columnCantidad = MyBase.Columns("Cantidad")
             Me.columnsubTotal = MyBase.Columns("subTotal")
             Me.columnprecio = MyBase.Columns("precio")
+            Me.columnFoto = MyBase.Columns("Foto")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -469,6 +480,8 @@ Partial Public Class VideosDS
             MyBase.Columns.Add(Me.columnsubTotal)
             Me.columnprecio = New Global.System.Data.DataColumn("precio", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnprecio)
+            Me.columnFoto = New Global.System.Data.DataColumn("Foto", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFoto)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnCodVideo}, true))
             Me.columnCodVideo.AutoIncrement = true
             Me.columnCodVideo.AutoIncrementSeed = -1
@@ -479,6 +492,7 @@ Partial Public Class VideosDS
             Me.columnTitulo.MaxLength = 50
             Me.columnCategoria.Caption = "CodCategoria"
             Me.columnCategoria.MaxLength = 50
+            Me.columnFoto.MaxLength = 25
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -711,6 +725,21 @@ Partial Public Class VideosDS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Foto() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableVideos.FotoColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Foto' de la tabla 'Videos' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVideos.FotoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsTituloNull() As Boolean
             Return Me.IsNull(Me.tableVideos.TituloColumn)
         End Function
@@ -767,6 +796,18 @@ Partial Public Class VideosDS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetprecioNull()
             Me(Me.tableVideos.precioColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsFotoNull() As Boolean
+            Return Me.IsNull(Me.tableVideos.FotoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetFotoNull()
+            Me(Me.tableVideos.FotoColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

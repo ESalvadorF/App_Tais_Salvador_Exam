@@ -50,15 +50,15 @@ Public Class WebListaComprados
         Dim cant As Integer
         Dim obj As VideosDS = CType(Session("Canasta"), VideosDS)
         For i = 0 To GvwCarrito.Rows.Count - 1
-            cod = (GvwCarrito.Rows(i).Cells(1).Text)
-            des = (GvwCarrito.Rows(i).Cells(2).Text)
-            cat = (GvwCarrito.Rows(i).Cells(3).Text)
-            prec = Double.Parse(GvwCarrito.Rows(i).Cells(4).Text)
+            cod = (GvwCarrito.Rows(i).Cells(2).Text)
+            des = (GvwCarrito.Rows(i).Cells(3).Text)
+            cat = (GvwCarrito.Rows(i).Cells(4).Text)
+            prec = Double.Parse(GvwCarrito.Rows(i).Cells(5).Text)
             cant = CType(GvwCarrito.Rows(i).Cells(0).FindControl("TextBox1"), TextBox).Text
-            prec = Double.Parse(GvwCarrito.Rows(i).Cells(4).Text)
+            prec = Double.Parse(GvwCarrito.Rows(i).Cells(5).Text)
             subtotal = cant * prec
             'Actualiza la canasta
-            GvwCarrito.Rows(i).Cells(6).Text = subtotal
+            GvwCarrito.Rows(i).Cells(7).Text = subtotal
             For Each objDR In obj.Videos.Rows
                 If objDR("CodVideo") = cod Then
                     objDR("Cantidad") = cant
@@ -80,16 +80,34 @@ Public Class WebListaComprados
 
     Protected Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Dim oVideo As New VideosCN
-        Dim numDocumento As Integer
+        Dim numDocumento, i As Integer
+        Dim productos As String
         Dim ok As Boolean
+        i = 0
+        productos = "<table>
+          <tr>
+            <th>Codigo del Video</th>
+            <th>Cantidad</th> 
+            <th>Subtotal</th>
+          </tr>"
         numDocumento = oVideo.CrearDocumento()
         Dim obj As VideosDS = CType(Session("Canasta"), VideosDS)
         If obj IsNot Nothing Then
             If TextBox2.Text <> "" Then
 
+                Label5.Text = "Nombre: " + TextBox3.Text + " . Usted realizo una compra de varias peliculas por un monto de" + "S/." + Lblsubtotal.Text
+
+
                 For Each objDR In obj.Videos.Rows
                     ok = oVideo.Insertar(numDocumento, objDR("CodVideo"), objDR("Cantidad"), objDR("subtotal"))
+                    productos = productos + "<tr><td>" + objDR("CodVideo").ToString + "</td><td>" + objDR("Cantidad").ToString + "</td><td>" + objDR("subtotal").ToString + "</td></tr>"
+
                 Next
+
+
+                productos = productos + "</table>"
+
+                Label6.Text = productos
                 MsgBox("Compra Registrada")
 
                 Dim correo As New System.Net.Mail.MailMessage
@@ -101,7 +119,7 @@ Public Class WebListaComprados
 
                     correo.Body = "Nombre: " + TextBox3.Text +
                         " Correo: " + TextBox2.Text +
-                        " Usted realizo una compra de varias peliculas por un monto de: " + "S/." + Lblsubtotal.Text
+                        " Usted realizo una compra de varias peliculas por un monto de: " + "S/." + Lblsubtotal.Text + ".<h3>Lista de Videos</h3>" + productos
 
                     correo.Subject = "Verificacion de Compra"
                     correo.IsBodyHtml = True
@@ -121,9 +139,9 @@ Public Class WebListaComprados
                     MsgBox(ex.Message, "Mensaje Visual Basic" & ex.Message)
                 End Try
 
-                Session("Canasta") = Nothing
+                'Session("Canasta") = Nothing
 
-                Response.Redirect("WebCatalagoVideos.aspx")
+                'Response.Redirect("WebCatalagoVideos.aspx")
             Else
                 MsgBox("Correo no ingresado")
             End If

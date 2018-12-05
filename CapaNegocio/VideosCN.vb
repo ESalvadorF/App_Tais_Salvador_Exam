@@ -19,6 +19,9 @@ Public Class VideosCN
     Public Function FiltrarXTitulo(ByVal titulo As String) As DataSet
         Return VideosDA.Instancia.filtrarXTitulo(titulo)
     End Function
+    Public Function FiltrarXTituloXOpcion(ByVal titulo As String, ByVal opcion As String) As DataSet
+        Return VideosDA.Instancia.filtrarXTituloXOpcion(titulo, opcion)
+    End Function
     Public Function CrearDocumento() As Integer
         Return VideosDA.Instancia.CrearDocumento()
     End Function

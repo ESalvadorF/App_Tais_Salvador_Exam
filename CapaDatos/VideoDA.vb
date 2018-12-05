@@ -61,6 +61,24 @@ Public Class VideosDA
         Return ds
     End Function
 
+    Public Function filtrarXTituloXOpcion(ByVal titulo As String, ByVal opcion As String) As DataSet
+        Dim ds As New DataSet
+        Try
+            Dim cnn As New SqlConnection(Conexion.Instancia.cadenaconexion)
+            cnn.Open()
+            Dim da As New SqlDataAdapter("filtrar_videos_texto_opcion", cnn)
+            da.SelectCommand.CommandType = CommandType.StoredProcedure
+            da.SelectCommand.Parameters.Add("@texto", SqlDbType.VarChar, 30).Value = titulo
+            da.SelectCommand.Parameters.Add("@opcion", SqlDbType.VarChar, 50).Value = opcion
+            da.Fill(ds, "Videos")
+            cnn.Close()
+            cnn.Dispose()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+        Return ds
+    End Function
+
     Public Function CrearDocumento() As Integer
         Dim cnn As New SqlConnection(Conexion.Instancia.cadenaconexion)
         cnn.Open()

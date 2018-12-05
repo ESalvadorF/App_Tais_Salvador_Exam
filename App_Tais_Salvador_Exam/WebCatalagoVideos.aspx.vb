@@ -14,7 +14,7 @@ Public Class WebCatalagoVideos
     End Sub
 
     Private Sub DataList1_ItemCommand(ByVal source As Object, ByVal e As System.Web.UI.WebControls.DataListCommandEventArgs) Handles DataList1.ItemCommand
-        Dim cod, des, cat As String
+        Dim cod, des, cat, fot As String
         Dim pre As Double
         If e.CommandName = "seleccionar" Then
             DataList1.SelectedIndex = e.Item.ItemIndex
@@ -22,7 +22,8 @@ Public Class WebCatalagoVideos
             des = CType(DataList1.SelectedItem.FindControl("descripcionLabel"), Label).Text
             cat = CType(DataList1.SelectedItem.FindControl("categoriaLabel"), Label).Text
             pre = CType(DataList1.SelectedItem.FindControl("precioLabel"), Label).Text
-            AgregarIdprod(cod, des, cat, pre)
+            fot = CType(DataList1.SelectedItem.FindControl("Image1"), Image).AlternateText
+            AgregarIdprod(cod, des, cat, pre, fot)
         End If
     End Sub
 
@@ -35,13 +36,14 @@ Public Class WebCatalagoVideos
         End If
         Return obj
     End Function
-    Public Sub AgregarIdprod(ByVal cod As String, ByVal des As String, ByVal cat As String, ByVal pre As Double)
+    Public Sub AgregarIdprod(ByVal cod As String, ByVal des As String, ByVal cat As String, ByVal pre As Double, ByVal fot As String)
         Dim obj As VideosDS = Me.Video
         Dim fila As VideosDS.VideosRow = obj.Videos.NewVideosRow()
         fila.CodVideo = cod
         fila.Titulo = des
         fila.Categoria = cat
         fila.precio = pre
+        fila.Foto = fot
         fila.Cantidad = 1
         fila.subTotal = pre * 1
 
@@ -64,24 +66,34 @@ Public Class WebCatalagoVideos
         Response.Redirect("WebListaComprados.aspx")
     End Sub
 
-    Protected Sub DropDownList1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DropDownList1.SelectedIndexChanged
+    'Protected Sub DropDownList1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DropDownList1.SelectedIndexChanged
 
+    '    Dim ds As DataSet
+    '    Dim n As String
+    '    n = DropDownList1.SelectedValue
+    '    ds = VideosCN.Instancia.FiltrarxCategoria(n)
+    '    DataList1.DataSource = VideosCN.Instancia.FiltrarxCategoria(n)
+    '    DataList1.DataBind()
+
+    'End Sub
+
+    'Protected Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
+
+    '    Dim ds As DataSet
+    '    Dim newTitulo As String
+    '    newTitulo = TextBox1.Text
+    '    ds = VideosCN.Instancia.FiltrarXTitulo(newTitulo)
+    '    DataList1.DataSource = VideosCN.Instancia.FiltrarXTitulo(newTitulo)
+    '    DataList1.DataBind()
+    'End Sub
+
+    Protected Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Dim ds As DataSet
-        Dim n As String
-        n = DropDownList1.SelectedValue
-        ds = VideosCN.Instancia.FiltrarxCategoria(n)
-        DataList1.DataSource = VideosCN.Instancia.FiltrarxCategoria(n)
-        DataList1.DataBind()
-
-    End Sub
-
-    Protected Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
-
-        Dim ds As DataSet
-        Dim newTitulo As String
+        Dim newTitulo, opcion As String
         newTitulo = TextBox1.Text
-        ds = VideosCN.Instancia.FiltrarXTitulo(newTitulo)
-        DataList1.DataSource = VideosCN.Instancia.FiltrarXTitulo(newTitulo)
+        opcion = DropDownList2.SelectedValue
+        ds = VideosCN.Instancia.FiltrarXTituloXOpcion(newTitulo, opcion)
+        DataList1.DataSource = VideosCN.Instancia.FiltrarXTituloXOpcion(newTitulo, opcion)
         DataList1.DataBind()
     End Sub
 End Class

@@ -17,9 +17,16 @@
         <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="DesCategoria" AutoPostBack="true"  DataValueField="CodCategoria">
         </asp:DropDownList>
         <br />
+        <br />
+        <br />
         <asp:Label ID="Label2" runat="server" Text="Buscador por nombre de pelicula:  "></asp:Label>
         
         <asp:TextBox ID="TextBox1" AutoPostBack="true" runat="server"></asp:TextBox>
+        <asp:DropDownList ID="DropDownList2" runat="server">
+            <asp:ListItem>Titulo</asp:ListItem>
+            <asp:ListItem>Categoria</asp:ListItem>
+        </asp:DropDownList>
+        <asp:Button ID="Button3" runat="server" Text="Button" />
     <asp:DataList ID="DataList1" runat="server" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black" GridLines="Both" RepeatColumns="2" Width="865px" HorizontalAlign="Center" Height="463px">
         <FooterStyle BackColor="#CCCCCC" />
         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -28,7 +35,7 @@
             <table class="table">
                 <tr>
                     <td>
-                        <asp:Image ID="Image1" runat="server" Height="193px" ImageUrl='<%# "~/imagen/" + Eval("foto") %>' Width="206px" />
+                        <asp:Image ID="Image1" runat="server" Height="193px" ImageUrl='<%# "~/imagen/" + Eval("foto") %>' Width="206px" AlternateText='<%# Eval("foto") %>' />
                     </td>
                 </tr>
                 <tr>

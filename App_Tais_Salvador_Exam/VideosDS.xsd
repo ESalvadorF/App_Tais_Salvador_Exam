@@ -63,7 +63,7 @@
   <xs:element name="VideosDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="VideosDS" msprop:Generator_UserDSName="VideosDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Videos" msprop:Generator_TableClassName="VideosDataTable" msprop:Generator_TableVarName="tableVideos" msprop:Generator_TablePropName="Videos" msprop:Generator_RowDeletingName="VideosRowDeleting" msprop:Generator_RowChangingName="VideosRowChanging" msprop:Generator_RowEvHandlerName="VideosRowChangeEventHandler" msprop:Generator_RowDeletedName="VideosRowDeleted" msprop:Generator_UserTableName="Videos" msprop:Generator_RowChangedName="VideosRowChanged" msprop:Generator_RowEvArgName="VideosRowChangeEvent" msprop:Generator_RowClassName="VideosRow">
+        <xs:element name="Videos" msprop:Generator_TableClassName="VideosDataTable" msprop:Generator_TableVarName="tableVideos" msprop:Generator_RowChangedName="VideosRowChanged" msprop:Generator_TablePropName="Videos" msprop:Generator_RowDeletingName="VideosRowDeleting" msprop:Generator_RowChangingName="VideosRowChanging" msprop:Generator_RowEvHandlerName="VideosRowChangeEventHandler" msprop:Generator_RowDeletedName="VideosRowDeleted" msprop:Generator_RowClassName="VideosRow" msprop:Generator_UserTableName="Videos" msprop:Generator_RowEvArgName="VideosRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CodVideo" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCodVideo" msprop:Generator_ColumnPropNameInRow="CodVideo" msprop:Generator_ColumnPropNameInTable="CodVideoColumn" msprop:Generator_UserColumnName="CodVideo" type="xs:int" />
@@ -84,6 +84,13 @@
               <xs:element name="Cantidad" msprop:Generator_ColumnVarNameInTable="columnCantidad" msprop:Generator_ColumnPropNameInRow="Cantidad" msprop:Generator_ColumnPropNameInTable="CantidadColumn" msprop:Generator_UserColumnName="Cantidad" type="xs:int" minOccurs="0" />
               <xs:element name="subTotal" msprop:Generator_ColumnVarNameInTable="columnsubTotal" msprop:Generator_ColumnPropNameInRow="subTotal" msprop:Generator_ColumnPropNameInTable="subTotalColumn" msprop:Generator_UserColumnName="subTotal" type="xs:decimal" minOccurs="0" />
               <xs:element name="precio" msprop:Generator_ColumnVarNameInTable="columnprecio" msprop:Generator_ColumnPropNameInRow="precio" msprop:Generator_ColumnPropNameInTable="precioColumn" msprop:Generator_UserColumnName="precio" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Foto" msprop:Generator_ColumnVarNameInTable="columnFoto" msprop:Generator_ColumnPropNameInRow="Foto" msprop:Generator_ColumnPropNameInTable="FotoColumn" msprop:Generator_UserColumnName="Foto" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
